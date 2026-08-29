@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Client portal | ClientDesk</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand brand-light" href="/"><span class="brand-mark" id="side-logo">A</span><span id="side-brand">Aster & Lane</span></a>
+      <nav class="side-nav" aria-label="Portal navigation">
+        <a class="active" href="#overview"><span>⌂</span> Overview</a>
+        <a href="#timeline"><span>◫</span> Timeline</a>
+        <a href="#deliverables"><span>◇</span> Deliverables</a>
+        <a href="#approvals"><span>✓</span> Approvals <b id="approval-count">0</b></a>
+        <a href="#invoices"><span>▤</span> Invoices</a>
+      </nav>
+      <div class="side-help"><span>Need help?</span><a id="support-email" href="#">Contact your project team</a></div>
+      <div class="side-user"><div class="avatar" id="user-avatar">MC</div><div><b id="user-name">Loading</b><span id="user-company">Client portal</span></div></div>
+    </aside>
+
+    <main class="portal-main" id="overview">
+      <header class="portal-topbar"><button class="mobile-menu" aria-label="Open navigation">☰</button><span id="today-label"></span><a class="button button-ghost small" href="/">Exit demo</a></header>
+      <section class="welcome-block">
+        <div><span class="kicker" id="welcome-kicker">WELCOME BACK</span><h1 id="project-title">Loading your project</h1><p id="welcome-message">Your workspace is being prepared.</p></div>
+        <div class="status-pill"><i></i><span id="project-status">Active project</span></div>
+      </section>
+
+      <section class="project-summary">
+        <div class="progress-copy"><span>OVERALL PROGRESS</span><strong id="progress-number">0%</strong></div>
+        <div class="large-progress"><span id="progress-bar"></span></div>
+        <div class="summary-meta"><span>Target completion <b id="due-date">Not set</b></span><span>Package <b id="plan-name">Standard</b></span></div>
+      </section>
+
+      <section class="portal-grid">
+        <div class="portal-column">
+          <section class="panel" id="approvals"><div class="panel-heading"><div><span class="kicker">YOUR ATTENTION</span><h2>Approvals</h2></div><span class="panel-count" id="approval-panel-count">0 open</span></div><div id="approval-list" class="stack-list"></div></section>
+          <section class="panel" id="timeline"><div class="panel-heading"><div><span class="kicker">PROJECT ROADMAP</span><h2>Milestones</h2></div></div><div id="milestone-list" class="timeline"></div></section>
+        </div>
+        <div class="portal-column">
+          <section class="panel update-panel"><div class="panel-heading"><div><span class="kicker">LATEST FROM THE TEAM</span><h2>Project updates</h2></div></div><div id="update-list" class="update-list"></div></section>
+          <section class="panel" id="deliverables"><div class="panel-heading"><div><span class="kicker">FILES AND LINKS</span><h2>Deliverables</h2></div><span class="panel-count" id="deliverable-count">0 ready</span></div><div id="deliverable-list" class="stack-list"></div></section>
+          <section class="panel" id="invoices"><div class="panel-heading"><div><span class="kicker">BILLING</span><h2>Invoices</h2></div></div><div id="invoice-list" class="stack-list"></div></section>
+        </div>
+      </section>
+      <footer class="app-footer"><span id="footer-brand">Powered by ClientDesk</span><a id="privacy-link" href="#" hidden>Privacy</a></footer>
+    </main>
+  </div>
+
+  <dialog id="approval-dialog">
+    <form method="dialog" id="approval-form">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <span class="kicker">CLIENT DECISION</span><h2 id="dialog-title">Review request</h2><p id="dialog-detail"></p>
+      <label for="approval-note">Optional note</label><textarea id="approval-note" rows="4" maxlength="1500" placeholder="Add context for your project team"></textarea>
+      <div class="dialog-actions"><button class="button button-secondary" id="changes-button" type="button">Request changes</button><button class="button button-primary" id="approve-button" type="button">Approve</button></div>
+      <p class="form-message" id="approval-message"></p>
+    </form>
+  </dialog>
+  <script src="/assets/portal.js" defer></script>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Studio dashboard | ClientDesk</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="brand brand-light" href="/"><span class="brand-mark">C</span><span>ClientDesk</span></a>
+      <nav class="admin-nav"><button class="active" data-view="dashboard">Dashboard</button><button data-view="clients">Clients</button><button data-view="brand">Brand settings</button></nav>
+      <div class="demo-notice"><b>Safe demo mode</b><span>Fictional data. Changes are disabled.</span></div>
+      <a class="back-link" href="/">← Product overview</a>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-topbar"><div><span class="kicker">STUDIO WORKSPACE</span><h1>Good morning.</h1></div><div class="admin-actions"><button class="button button-secondary" id="refresh-button">Refresh</button><button class="button button-primary" id="new-client-button">+ New client</button></div></header>
+      <section class="token-gate" id="token-gate"><div class="gate-card"><span class="brand-mark">C</span><h2>Open the studio dashboard</h2><p>Use the demo access to explore the read-only workspace, or enter a private admin token for a buyer deployment.</p><label for="admin-token">Admin token</label><input id="admin-token" type="password" autocomplete="current-password" placeholder="Enter token"><div class="gate-actions"><button class="button button-primary" id="login-button">Open dashboard</button><button class="button button-secondary" id="demo-button">Use demo access</button></div><p class="form-message" id="login-message"></p></div></section>
+      <div id="dashboard-content" hidden>
+        <section class="metric-grid"><article><span>ACTIVE CLIENTS</span><b id="metric-active">0</b><small>currently in delivery</small></article><article><span>PENDING APPROVALS</span><b id="metric-approvals">0</b><small>waiting for a decision</small></article><article><span>AVERAGE PROGRESS</span><b id="metric-progress">0%</b><small>across all projects</small></article><article class="metric-highlight"><span>OUTSTANDING</span><b id="metric-outstanding">$0</b><small>pending invoice value</small></article></section>
+        <section class="admin-panel" id="client-section"><div class="panel-heading"><div><span class="kicker">CLIENT DELIVERY</span><h2>Active workspaces</h2></div><span class="panel-count" id="client-count">0 clients</span></div><div class="client-table-wrap"><table class="client-table"><thead><tr><th>Client</th><th>Project</th><th>Status</th><th>Progress</th><th>Due</th><th>Actions</th></tr></thead><tbody id="client-table"></tbody></table></div></section>
+        <section class="admin-bottom-grid"><article class="admin-panel"><span class="kicker">TODAY'S FOCUS</span><h2>Keep clients moving</h2><ul class="focus-list"><li><i>1</i><span><b>Resolve open approvals</b><small>Decisions are the fastest path to delivery.</small></span></li><li><i>2</i><span><b>Post one meaningful update</b><small>Silence creates more questions than delays.</small></span></li><li><i>3</i><span><b>Check outstanding invoices</b><small>Keep billing visible and professional.</small></span></li></ul></article><article class="admin-panel dark-panel"><span class="kicker">CLIENTDESK PRINCIPLE</span><blockquote>Every client should know what is done, what is next, and what needs their attention.</blockquote><span class="signature">No chasing required.</span></article></section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="new-client-dialog" class="admin-dialog">
+    <form id="new-client-form">
+      <button class="dialog-close" type="button" data-close="new-client-dialog" aria-label="Close">×</button>
+      <span class="kicker">NEW WORKSPACE</span><h2>Create a client portal</h2>
+      <div class="form-grid"><label>Client name<input name="name" required minlength="2"></label><label>Company<input name="company" required minlength="2"></label><label>Email<input name="email" type="email" required></label><label>Package<input name="plan" value="Standard" required></label><label class="wide">Project name<input name="project_name" required minlength="2"></label><label>Due date<input name="due_date" type="date"></label><label>Starting progress<input name="progress" type="number" min="0" max="100" value="0"></label></div>
+      <div class="dialog-actions"><button class="button button-secondary" type="button" data-close="new-client-dialog">Cancel</button><button class="button button-primary" type="submit">Create portal</button></div><p class="form-message" id="new-client-message"></p>
+    </form>
+  </dialog>
+
+  <dialog id="manage-client-dialog" class="admin-dialog wide-dialog">
+    <form id="client-settings-form">
+      <button class="dialog-close" type="button" data-close="manage-client-dialog" aria-label="Close">×</button>
+      <span class="kicker">CLIENT WORKSPACE</span><h2 id="manage-client-title">Manage client</h2><p id="manage-client-company"></p>
+      <input id="manage-client-id" type="hidden">
+      <div class="form-grid compact"><label>Status<select id="manage-status"><option value="active">Active</option><option value="paused">Paused</option><option value="complete">Complete</option></select></label><label>Progress<input id="manage-progress" type="number" min="0" max="100"></label><label>Due date<input id="manage-due-date" type="date"></label><label>Package<input id="manage-plan" minlength="2"></label></div>
+      <div class="inline-actions"><button class="button button-primary small" type="submit">Save project</button><a class="button button-secondary small" id="manage-portal-link" href="#" target="_blank" rel="noopener">Open portal</a></div>
+    </form>
+    <div class="management-grid">
+      <form class="mini-form" data-action="milestones"><h3>Add milestone</h3><input name="title" placeholder="Milestone title" required><input name="detail" placeholder="Short detail"><div class="mini-row"><select name="status"><option value="upcoming">Upcoming</option><option value="in_progress">In progress</option><option value="complete">Complete</option></select><input name="due_date" type="date"></div><button class="button button-secondary small" type="submit">Add milestone</button></form>
+      <form class="mini-form" data-action="approvals"><h3>Request approval</h3><input name="title" placeholder="Decision needed" required><textarea name="details" rows="2" placeholder="What should the client review?"></textarea><button class="button button-secondary small" type="submit">Send to portal</button></form>
+      <form class="mini-form" data-action="deliverables"><h3>Share deliverable</h3><input name="title" placeholder="Deliverable title" required><input name="url" type="url" placeholder="https://" required><input name="note" placeholder="Description"><button class="button button-secondary small" type="submit">Add deliverable</button></form>
+      <form class="mini-form" data-action="updates"><h3>Post update</h3><textarea name="body" rows="3" placeholder="Tell the client what changed" required></textarea><input name="visibility" type="hidden" value="client"><button class="button button-secondary small" type="submit">Post update</button></form>
+      <form class="mini-form" data-action="invoices"><h3>Record invoice</h3><div class="mini-row"><input name="reference" placeholder="INV-1001" required><input name="amount" type="number" min="1" step="0.01" placeholder="Amount" required></div><div class="mini-row"><select name="status"><option value="pending">Pending</option><option value="paid">Paid</option><option value="overdue">Overdue</option><option value="void">Void</option></select><input name="due_date" type="date"></div><input name="currency" type="hidden" value="USD"><input name="payment_url" type="url" placeholder="Optional payment link"><button class="button button-secondary small" type="submit">Add invoice</button></form>
+    </div><p class="form-message" id="manage-client-message"></p>
+  </dialog>
+
+  <dialog id="brand-dialog" class="admin-dialog">
+    <form id="brand-form">
+      <button class="dialog-close" type="button" data-close="brand-dialog" aria-label="Close">×</button><span class="kicker">WHITE-LABEL SETTINGS</span><h2>Brand the portal</h2>
+      <div class="form-grid"><label>Business name<input name="name" required></label><label>Short name<input name="short_name" required></label><label>Logo letters<input name="logo_text" maxlength="3" required></label><label>Support email<input name="support_email" type="email"></label><label>Primary color<input name="primary_color" type="color"></label><label>Accent color<input name="accent_color" type="color"></label><label class="wide">Tagline<input name="tagline" required></label><label class="wide">Welcome message<textarea name="welcome_message" rows="3" required></textarea></label><input name="currency" type="hidden" value="USD"><input name="privacy_url" type="hidden" value=""></div>
+      <div class="dialog-actions"><button class="button button-secondary" type="button" data-close="brand-dialog">Cancel</button><button class="button button-primary" type="submit">Save branding</button></div><p class="form-message" id="brand-message"></p>
+    </form>
+  </dialog>
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>
