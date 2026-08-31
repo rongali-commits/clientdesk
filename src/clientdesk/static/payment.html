@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invoice payment | ClientDesk</title>
+  <style>
+    :root { color-scheme: light; --ink: #17372f; --acid: #b8ff4e; --paper: #f6f2e8; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: var(--paper); color: var(--ink); font-family: Arial, sans-serif; padding: 20px; }
+    main { width: min(520px, 100%); background: white; border: 1px solid #17372f20; border-radius: 28px; padding: 38px; box-shadow: 0 24px 70px #17372f12; }
+    .mark { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--acid); font-weight: 900; }
+    h1 { margin: 28px 0 10px; font-size: 40px; letter-spacing: -.04em; }
+    p { color: #17372fa6; line-height: 1.65; }
+    dl { margin: 26px 0; padding: 20px; border-radius: 18px; background: #f4f5ef; }
+    div { display: flex; justify-content: space-between; gap: 20px; padding: 8px 0; }
+    dt { color: #17372f99; } dd { margin: 0; font-weight: 800; }
+    a { display: block; border-radius: 12px; background: var(--ink); color: white; padding: 14px 18px; text-align: center; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="mark">C</span>
+    <h1>Invoice checkout</h1>
+    <p>The production version connects this step to the business's approved Stripe, PayPal, or accounting payment link.</p>
+    <dl><div><dt>Invoice</dt><dd>INV-1048</dd></div><div><dt>Amount</dt><dd>$800</dd></div><div><dt>Status</dt><dd>Ready for payment</dd></div></dl>
+    <a href="/">Return to ClientDesk</a>
+  </main>
+</body>
+</html>

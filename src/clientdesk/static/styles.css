@@ -69,7 +69,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .preview-grid article { background: white; border: 1px solid #e2e3df; border-radius: 13px; padding: 17px; display: flex; flex-direction: column; min-height: 125px; }
 .preview-grid small { font-size: 8px; letter-spacing: .12em; color: #7b857e; }
 .preview-grid strong { font-size: 12px; margin: 11px 0 auto; }
-.preview-grid button { border: 0; background: var(--ink); color: white; border-radius: 7px; font-size: 9px; padding: 7px; }
+.preview-grid .preview-button { display: inline-block; border: 0; background: var(--ink); color: white; border-radius: 7px; font-size: 9px; padding: 7px; text-align: center; text-decoration: none; }
 .preview-grid span { font-size: 9px; color: #899089; }
 .float-card { position: absolute; z-index: 2; background: white; border-radius: 13px; box-shadow: var(--shadow); padding: 13px 17px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; }
 .float-card b { font-size: 20px; }
@@ -97,7 +97,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .progress-art i:nth-child(-n+3) { background: var(--acid); }
 .approval-art { margin-top: 31px; border: 1px solid var(--line); padding: 15px; border-radius: 13px; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 9px; background: #f8f8f4; }
 .approval-art b { font-size: 12px; }
-.approval-art button { border: 0; border-radius: 7px; padding: 7px 9px; background: var(--ink); color: white; font-size: 10px; }
+.approval-art .art-button { border: 0; border-radius: 7px; padding: 7px 9px; background: var(--ink); color: white; font-size: 10px; }
 .approval-art .muted { background: #e5e6e1; color: var(--ink); }
 .file-art { margin-top: 31px; background: #f8f8f4; border: 1px solid var(--line); border-radius: 13px; padding: 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 11px; align-items: center; }
 .file-art i { width: 34px; height: 40px; background: #f2d6c4; display: grid; place-items: center; font-size: 8px; font-style: normal; border-radius: 6px; }

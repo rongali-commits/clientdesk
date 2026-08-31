@@ -103,6 +103,7 @@ class Storage:
         with self.connect() as connection:
             count = connection.execute("SELECT COUNT(*) FROM clients").fetchone()[0]
             if count:
+                self._repair_sample_links()
                 return
         maya = self.create_client(
             {
@@ -159,7 +160,7 @@ class Storage:
             client_id,
             {
                 "title": "Project direction brief",
-                "url": "https://example.com",
+                "url": "/assets/project-direction-brief.html",
                 "note": "Approved project goals and experience principles",
                 "kind": "document",
             },
@@ -168,7 +169,7 @@ class Storage:
             client_id,
             {
                 "title": "Interactive portal preview",
-                "url": "https://example.com",
+                "url": f"/p/{maya['portal_token']}",
                 "note": "Responsive prototype for desktop and mobile",
                 "kind": "preview",
             },
@@ -199,7 +200,7 @@ class Storage:
                 "currency": "USD",
                 "status": "pending",
                 "due_date": "2026-09-05",
-                "payment_url": "https://example.com",
+                "payment_url": "/assets/payment.html",
             },
         )
         self.create_update(
@@ -212,6 +213,26 @@ class Storage:
                 "visibility": "client",
             },
         )
+
+    def _repair_sample_links(self) -> None:
+        with self.connect() as connection:
+            client = connection.execute(
+                "SELECT portal_token FROM clients ORDER BY id LIMIT 1"
+            ).fetchone()
+            if client is None:
+                return
+            connection.execute(
+                "UPDATE deliverables SET url = ? WHERE title = ? AND url LIKE 'https://example.com%'",
+                ("/assets/project-direction-brief.html", "Project direction brief"),
+            )
+            connection.execute(
+                "UPDATE deliverables SET url = ? WHERE title = ? AND url LIKE 'https://example.com%'",
+                (f"/p/{client['portal_token']}", "Interactive portal preview"),
+            )
+            connection.execute(
+                "UPDATE invoices SET payment_url = ? WHERE payment_url LIKE 'https://example.com%'",
+                ("/assets/payment.html",),
+            )
 
     def ping(self) -> bool:
         with self.connect() as connection:
