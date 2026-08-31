@@ -216,6 +216,17 @@ class Storage:
 
     def _repair_sample_links(self) -> None:
         with self.connect() as connection:
+            settings_row = connection.execute(
+                "SELECT payload FROM settings WHERE id = 1"
+            ).fetchone()
+            if settings_row is not None:
+                settings = json.loads(settings_row["payload"])
+                if settings.get("support_email", "").endswith("@example.com"):
+                    settings["support_email"] = "hello@noerong.com"
+                    connection.execute(
+                        "UPDATE settings SET payload = ?, updated_at = ? WHERE id = 1",
+                        (json.dumps(settings), iso()),
+                    )
             client = connection.execute(
                 "SELECT portal_token FROM clients ORDER BY id LIMIT 1"
             ).fetchone()
