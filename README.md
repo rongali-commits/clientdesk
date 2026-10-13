@@ -1,5 +1,9 @@
 # ClientDesk
 
+[![Checks](https://github.com/rongali-commits/clientdesk/actions/workflows/ci.yml/badge.svg)](https://github.com/rongali-commits/clientdesk/actions/workflows/ci.yml)
+
+[Case study](https://noerong.com/projects/clientdesk) Â· [Live demo](https://clientdesk-production-6c93.up.railway.app) Â· [Contact](https://noerong.com/contact) Â· [Checks](https://github.com/rongali-commits/clientdesk/actions)
+
 ClientDesk is a white-label client onboarding, project progress, approval, delivery, and invoice portal for agencies, consultants, and independent service businesses.
 
 The included fictional **Aster & Lane Studio** experience is a safe marketplace demo. Replace every sample identity, project, link, invoice, date, claim, and contact detail with buyer-approved information before launch.
@@ -88,6 +92,10 @@ For a buyer deployment:
 - SQLite is appropriate for one small agency deployment. Move to PostgreSQL and full user authentication before serving many businesses from one shared instance.
 - Token links are designed for low-risk client collaboration, not regulated or enterprise identity requirements.
 - Configure backups for the persistent database volume.
+
+## Optional sales-media tooling
+
+The Windows sales-video script requires `pip install -e ".[media]"`, Windows Segoe UI fonts and network access for narration. It is independent of the application and its tests.
 
 ## Quality commands
 

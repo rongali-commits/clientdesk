@@ -2,16 +2,11 @@ from __future__ import annotations
 
 import asyncio
 import subprocess
-import sys
 from pathlib import Path
-
-SHARED_PYDEPS = Path(__file__).resolve().parents[3] / "tmp" / "upwork-video" / "pydeps"
-sys.path.insert(0, str(SHARED_PYDEPS))
 
 import edge_tts
 import imageio_ffmpeg
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
-
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parents[1]
@@ -35,15 +30,19 @@ FONT_SEMIBOLD = Path(r"C:\Windows\Fonts\seguisb.ttf")
 VOICE = "en-US-EmmaMultilingualNeural"
 NARRATION_TEXT = """Give every client one clear place to move work forward with ClientDesk.
 
-ClientDesk replaces scattered emails, file links, approval threads, and invoice reminders with one branded workspace.
+ClientDesk replaces scattered emails, file links, approval threads, and invoice reminders
+with one branded workspace.
 
-Every customer receives a private portal showing progress, milestones, updates, deliverables, approvals, and invoice status.
+Every customer receives a private portal showing progress, milestones, updates,
+deliverables, approvals, and invoice status.
 
 Your team manages every active workspace from a focused studio dashboard.
 
-Apply your business name, colors, welcome copy, and support details without rebuilding the product.
+Apply your business name, colors, welcome copy, and support details without rebuilding the
+product.
 
-Choose your package and launch ClientDesk for your agency, consultancy, or service business with Noerong."""
+Choose your package and launch ClientDesk for your agency, consultancy, or service
+business with Noerong."""
 
 
 def font(size: int, semibold: bool = False) -> ImageFont.FreeTypeFont:
@@ -54,13 +53,9 @@ def rounded_panel(canvas: Image.Image, box: tuple[int, int, int, int], radius: i
     shadow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     shadow_draw = ImageDraw.Draw(shadow)
     x1, y1, x2, y2 = box
-    shadow_draw.rounded_rectangle(
-        (x1 + 8, y1 + 12, x2 + 8, y2 + 12), radius, fill=(0, 0, 0, 115)
-    )
+    shadow_draw.rounded_rectangle((x1 + 8, y1 + 12, x2 + 8, y2 + 12), radius, fill=(0, 0, 0, 115))
     canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(14)))
-    ImageDraw.Draw(canvas).rounded_rectangle(
-        box, radius, fill=PANEL, outline="#314039", width=2
-    )
+    ImageDraw.Draw(canvas).rounded_rectangle(box, radius, fill=PANEL, outline="#314039", width=2)
 
 
 def brand_header(canvas: Image.Image, label: str) -> None:
@@ -83,7 +78,9 @@ def brand_header(canvas: Image.Image, label: str) -> None:
     )
 
 
-def fit_scene(source: Path, target: Path, label: str, centering: tuple[float, float] = (0.5, 0.46)) -> None:
+def fit_scene(
+    source: Path, target: Path, label: str, centering: tuple[float, float] = (0.5, 0.46)
+) -> None:
     canvas = Image.new("RGBA", (WIDTH, HEIGHT), BG)
     brand_header(canvas, label)
     box = (38, 84, WIDTH - 38, HEIGHT - 34)
@@ -99,9 +96,7 @@ def fit_scene(source: Path, target: Path, label: str, centering: tuple[float, fl
     x = (WIDTH - fitted.width) // 2
     y = 100
     mask = Image.new("L", fitted.size, 0)
-    ImageDraw.Draw(mask).rounded_rectangle(
-        (0, 0, fitted.width, fitted.height), 18, fill=255
-    )
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, fitted.width, fitted.height), 18, fill=255)
     canvas.paste(fitted, (x, y), mask)
     canvas.convert("RGB").save(target, quality=95)
 
@@ -134,9 +129,7 @@ def make_title(target: Path) -> None:
     x = 70
     for pill in pills:
         width = draw.textbbox((0, 0), pill, font=font(15, True))[2] + 38
-        draw.rounded_rectangle(
-            (x, 512, x + width, 552), 20, fill=PANEL, outline="#385043"
-        )
+        draw.rounded_rectangle((x, 512, x + width, 552), 20, fill=PANEL, outline="#385043")
         draw.text((x + 19, 520), pill, font=font(15, True), fill="#D7DED9")
         x += width + 14
 
@@ -157,7 +150,7 @@ def make_outro(target: Path) -> None:
     draw.text((70, 281), "client experience.", font=font(58, True), fill=LIME)
     draw.text(
         (72, 388),
-        "Progress  •  Files  •  Approvals  •  Invoices  •  One workspace",
+        "Progress  â€¢  Files  â€¢  Approvals  â€¢  Invoices  â€¢  One workspace",
         font=font(27),
         fill=MUTED,
     )
