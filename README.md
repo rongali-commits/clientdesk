@@ -2,7 +2,7 @@
 
 [![Checks](https://github.com/rongali-commits/clientdesk/actions/workflows/ci.yml/badge.svg)](https://github.com/rongali-commits/clientdesk/actions/workflows/ci.yml)
 
-[Case study](https://noerong.com/projects/clientdesk) · [Contact](https://noerong.com/contact) · [Checks](https://github.com/rongali-commits/clientdesk/actions)
+[Live demo](https://clientdesk-production-6c93.up.railway.app) · [Case study](https://noerong.com/projects/clientdesk) · [Contact](https://noerong.com/contact) · [Checks](https://github.com/rongali-commits/clientdesk/actions)
 
 ClientDesk is a white-label client onboarding, project progress, approval, delivery, and invoice portal for agencies, consultants, and independent service businesses.
 
